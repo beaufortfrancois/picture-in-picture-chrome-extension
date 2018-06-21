@@ -8,10 +8,10 @@ if (!document.pictureInPictureEnabled) {
         
         if (video.hasAttribute('__pip__')) {
           await document.exitPictureInPicture();
-          video.removeAttribute('__pip__');
         } else {
           await video.requestPictureInPicture();
           video.setAttribute('__pip__', true);
+          video.addEventListener('leavepictureinpicture', () => video.removeAttribute('__pip__'));
         }
       })();
     `;
